@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use('/public', express.static('uploads')); // Serve static files from 'uploads' directory
 
 // 4. Define routes BEFORE starting the server
-app.use('/users',UserRoute);
+app.use('/',UserRoute);
 app.use('/company',CompanyRoute);
 app.use('/jobs',JobRoute);
 app.use('/applications',ApplicationRoute);
