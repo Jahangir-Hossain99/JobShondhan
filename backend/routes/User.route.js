@@ -12,7 +12,7 @@ router.put('/update',upload.fields([{name:'avatar',maxCount:1},{name:'resume',ma
 router.delete('/:userId', auth.authenticateToken, User.deleteUser);
 
 //Company and Job routes
-router.get('/jobs',Job.getAllJobs);
+router.get('/',Job.getAllJobs);
 router.get('/companyDetails/:companyId',Company.getSpecificCompanyDetails)
 
 //Apply to job
