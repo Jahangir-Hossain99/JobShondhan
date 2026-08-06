@@ -2,11 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"; // Fallback to local if env variable is not set
+
 
 const Home = () => {
   const [jobs, setJobs] = useState([])
-  const [isLoading, setIsLoading] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   // 2. Initialize the navigate function
   const navigate = useNavigate();
@@ -20,10 +21,12 @@ const Home = () => {
   useEffect(()=>{
     const fetchAllJobs =  async ()=>{
       try {
-        const response = await axios.get(`${API_BASE_URL}/`, ///users/jobs < --- Previously used for local development
+        setIsLoading(true)
+        const response = await axios.get(`${API_BASE_URL}`, ///users/jobs < --- Previously used for local development
           {headers:{Authorization: `Bearer ${localStorage.getItem("authToken")}`}}
         )
-        setJobs(response.data.jobs)
+        setJobs(response.data.jobs || []); // Ensure jobs is always an array
+        setIsLoading(false)
       } catch (error) {
        toast.error("Failed to fetch jobs") 
       }
@@ -31,11 +34,19 @@ const Home = () => {
     fetchAllJobs()
   },[])
 
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <p className="text-xl text-gray-600">Loading job listings...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-center mb-8">Latest Job Listings</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {jobs.map(job => (
+        {jobs?.map(job => (
           <div key={job._id} className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl transition-shadow duration-300">
             <h3 className="text-xl font-semibold text-gray-800">{job.position}</h3>
             <p className="text-blue-600 font-medium my-2">{job.companyName}</p>
