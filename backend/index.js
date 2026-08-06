@@ -14,7 +14,7 @@ const { connectDB, disconnectDB } = require('./config/db');
 
 // 2. Middleware setup
 app.use(cors({
-  origin: ['job-shondhan-kala8.vercel.app','http://localhost:5173'],
+  origin: ['https://job-shondhan.vercel.app/','http://localhost:5173'],
   credentials: true,
 }));
 app.use(express.urlencoded({ extended: true })); 
