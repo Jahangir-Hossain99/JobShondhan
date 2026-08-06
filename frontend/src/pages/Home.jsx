@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
 
 const Home = () => {
   const [jobs, setJobs] = useState([])
@@ -19,7 +20,7 @@ const Home = () => {
   useEffect(()=>{
     const fetchAllJobs =  async ()=>{
       try {
-        const response = await axios.get('http://localhost:5000/users/jobs',
+        const response = await axios.get(`${API_BASE_URL}/`, ///users/jobs < --- Previously used for local development
           {headers:{Authorization: `Bearer ${localStorage.getItem("authToken")}`}}
         )
         setJobs(response.data.jobs)
