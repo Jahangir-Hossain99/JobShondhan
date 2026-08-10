@@ -16,7 +16,7 @@ const Home = () => {
   const handleViewDetails = (jobId) => {
     const selectedJob = jobs.find(job => job._id === jobId)
     // Navigates to the path defined in your main router: /jobs/:id
-    navigate(`${API_BASE_URL}/jobs/${jobId}`,{state:selectedJob});
+    navigate(`/jobs/${jobId}`,{state:selectedJob});
   };
   useEffect(()=>{
     const fetchAllJobs =  async ()=>{
