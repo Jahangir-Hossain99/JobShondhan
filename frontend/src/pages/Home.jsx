@@ -16,7 +16,7 @@ const Home = () => {
   const handleViewDetails = (jobId) => {
     const selectedJob = jobs.find(job => job._id === jobId)
     // Navigates to the path defined in your main router: /jobs/:id
-    navigate(`/jobs/${jobId}`,{state:selectedJob});
+    navigate(`${API_BASE_URL}/jobs/${jobId}`,{state:selectedJob});
   };
   useEffect(()=>{
     const fetchAllJobs =  async ()=>{
@@ -61,11 +61,11 @@ const Home = () => {
                 <span className='font-bold' > BDT {job.salary? `${job.salary}` : "Negotiable"}</span>
               </div>
               <div className="flex items-center">
-                <span className="mr-2">&#x1F5D3;&#xFE0F;</span>
+                <span className="mr-2">&#128220;</span>
                 <span>{job.employmentType}</span>
               </div>
               <div className="flex items-center">
-                <span className="mr-2">&#x1F4CC;</span>
+                <span className="mr-2">&#x1F4BC;</span>
                 <span>{job.seniority}</span>
               </div>
             </div>
