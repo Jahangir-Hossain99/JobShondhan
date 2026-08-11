@@ -29,6 +29,8 @@ const Home = () => {
         setIsLoading(false)
       } catch (error) {
        toast.error("Failed to fetch jobs") 
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchAllJobs()
