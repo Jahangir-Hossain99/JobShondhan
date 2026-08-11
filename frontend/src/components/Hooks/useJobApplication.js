@@ -1,6 +1,8 @@
 import {useState , useEffect} from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"; 
+
 export const useJobApplication = (jobData, userData) => {
     const [isApplied, setIsApplied] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -16,10 +18,10 @@ export const useJobApplication = (jobData, userData) => {
 
             try {
                 setLoading(true);
-                const companyResposne = await axios.get(`http://localhost:5000/users/companyDetails/${jobData.companyId}`, {
+                const companyResposne = await axios.get(`${API_BASE_URL}/users/companyDetails/${jobData.companyId}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
-                const applicationResponse = await axios.get(`http://localhost:5000/users/checkApplication/${jobData._id}/${userData._id}`, {
+                const applicationResponse = await axios.get(`${API_BASE_URL}/users/checkApplication/${jobData._id}/${userData._id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
                 setCompanyDetails(companyResposne.data.companyDetails);

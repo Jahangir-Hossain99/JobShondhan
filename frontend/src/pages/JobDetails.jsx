@@ -13,8 +13,8 @@ const JobDetails = () => {
   const { userData } = useAuth();
   const {companyDetails, setIsApplied, isApplied, loading} = useJobApplication(jobData, userData);  
   const navigate = useNavigate();
-// console.log("Job Data in JobDetails:", jobData, companyDetails, isApplied, loading);
-  console.log("Job Data in JobDetails:", jobData);
+  console.log("Job Data in JobDetails:", jobData, companyDetails, isApplied, loading);
+
   if (loading || !companyDetails || !jobData) {
     return <div className="pt-20 text-center">Loading Job Details...</div>;
   }
