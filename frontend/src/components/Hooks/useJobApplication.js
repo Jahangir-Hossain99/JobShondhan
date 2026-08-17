@@ -11,6 +11,8 @@ export const useJobApplication = (jobData, userData) => {
 
     useEffect(() => {
 
+        console.log("useJobApplication - jobData:", jobData, "userData:", userData, "checked:", checked);
+
         if (!jobData?._id || !userData?._id || checked) return;
 
         const fetchData = async () => {
