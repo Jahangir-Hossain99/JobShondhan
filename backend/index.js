@@ -25,7 +25,7 @@ app.use('/public', express.static('uploads')); // Serve static files from 'uploa
 
 // 4. Define routes BEFORE starting the server
 app.use('/',UserRoute);
-app.use('/company',CompanyRoute);
+app.use('company',CompanyRoute);
 app.use('/jobs',JobRoute);
 app.use('/applications',ApplicationRoute);
 
