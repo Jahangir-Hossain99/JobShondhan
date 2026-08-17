@@ -10,8 +10,8 @@ const Application = require('../models/Application.js');
 async function createUser(req, res) {
     const avatar = req.files.avatar ? req.files.avatar[0] : null;
     const resume = req.files.resume ? req.files.resume[0] : null;
-    const avatarUrl = avatar ? { URL: `/public/avatars/${avatar.filename}`, fileName: avatar.filename } : null;
-    const resumeUrl = resume ? { URL: `/public/resumes/${resume.filename}`, fileName: resume.filename } : null;
+    const avatarUrl = avatar ? { URL: `public/avatars/${avatar.filename}`, fileName: avatar.filename } : null;
+    const resumeUrl = resume ? { URL: `public/resumes/${resume.filename}`, fileName: resume.filename } : null;
 
     const { email, password, fullName, phone, address, aboutme, linkedin, experience, education, skills } = req.body;
 
