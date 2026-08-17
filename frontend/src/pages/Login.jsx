@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
-import import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"; // Fallback to local if env variable is not set
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"; // Fallback to local if env variable is not set
 
 
 
@@ -14,7 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}login`, { email, password,role:"user" });
+      const response = await axios.post(`${API_BASE_URL}login`, { email, password,role:"user" });
       const token = response.data.token
       const user = response.data.user;
       await login(user,token)
