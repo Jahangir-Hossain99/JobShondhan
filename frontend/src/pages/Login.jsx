@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"; // Fallback to local if env variable is not set
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/"; // Fallback to local if env variable is not set
 
 
 
