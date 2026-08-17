@@ -11,13 +11,11 @@ export const useJobApplication = (jobData, userData) => {
 
     useEffect(() => {
 
-        console.log("useJobApplication - jobData:", jobData, "userData:", userData, "checked:", checked);
-
         if (!jobData?._id || !userData?._id || checked) return;
 
         const fetchData = async () => {
             if (!jobData?.companyId) return;
-
+            console.log("Fetching company details and application status for jobId:", jobData._id, "and userId:", userData._id);
             try {
                 setLoading(true);
                 const companyResposne = await axios.get(`${API_BASE_URL}/companyDetails/${jobData.companyId}`, {
