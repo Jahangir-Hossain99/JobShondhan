@@ -7,30 +7,33 @@ export const useJobApplication = (jobData, userData) => {
     const [isApplied, setIsApplied] = useState(false);
     const [loading, setLoading] = useState(true);
     const [companyDetails, setCompanyDetails] = useState(null);
-    const [checked, setChecked] = useState(false);
 
     useEffect(() => {
 
-        if (!jobData?._id || !userData?._id || checked) return;
+       if (!jobData?._id || !jobData?.companyId) {
+            setLoading(false);
+            return;
+        }
 
         const fetchData = async () => {
-            if (!jobData?.companyId) return;
-            console.log("Fetching company details and application status for jobId:", jobData._id, "and userId:", userData._id);
+            setLoading(true);
             try {
-                setLoading(true);
-                const companyResposne = await axios.get(`${API_BASE_URL}/companyDetails/${jobData.companyId}`, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
+                const companyResposne = await axios.get(`${API_BASE_URL}/companyDetails/${jobData.companyId}`,
+                     {
+                    // headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
+                setCompanyDetails(companyResposne.data.companyDetails);
+
+                if (!userData?._id) {
                 const applicationResponse = await axios.get(`${API_BASE_URL}/checkApplication/${jobData._id}/${userData._id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
-                setCompanyDetails(companyResposne.data.companyDetails);
                 setIsApplied(applicationResponse.data.isApplied); 
-                setLoading(false);  
-                setChecked(true);
-            } catch (error) {
+                }
+                } catch (error) {
                 console.error("Error fetching job application data:", error);
-                setLoading(false);
+            } finally {
+            setLoading(false);
             }
         };
         fetchData();
