@@ -18,14 +18,14 @@ export const useJobApplication = (jobData, userData) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const companyResposne = await axios.get(`${API_BASE_URL}/companyDetails/${jobData.companyId}`,
+                const companyResposne = await axios.get(`${API_BASE_URL}companyDetails/${jobData.companyId}`,
                      {
                     // headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
                 setCompanyDetails(companyResposne.data.companyDetails);
 
                 if (!userData?._id) {
-                const applicationResponse = await axios.get(`${API_BASE_URL}/checkApplication/${jobData._id}/${userData._id}`, {
+                const applicationResponse = await axios.get(`${API_BASE_URL}checkApplication/${jobData._id}/${userData._id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
                 setIsApplied(applicationResponse.data.isApplied); 
