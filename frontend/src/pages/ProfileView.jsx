@@ -1,10 +1,11 @@
 import React from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"; // Fallback to local if env variable is not set
 
 // Assuming you'll pass an onDelete function from the parent component
 const ProfileView = ({ profile, onEdit, onDelete }) => {
   // Helpers
   const displayName = profile?.fullName || profile?.name || 'Anonymous';
-  const BACKEND_BASE_URL = 'http://localhost:5000';
+  const BACKEND_BASE_URL = API_BASE_URL;
   const safeUrl = (url) => {
     if (!url) return null;
     return(`${BACKEND_BASE_URL}${url.URL}`)
