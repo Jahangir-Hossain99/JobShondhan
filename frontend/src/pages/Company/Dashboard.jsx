@@ -7,6 +7,9 @@ import JobUpdate from '../Jobs/JobUpdate';
 import JobPosting from '../Jobs/JobPosting';
 import toast from 'react-hot-toast';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/"; // Fallback to local if env variable is not set
+const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
+
 const Dashboard = () => {
   const [postAjob, setPostAjob] = useState(false);
   const [jobDetails, setJobDetails] = useState(false);
@@ -17,11 +20,11 @@ const Dashboard = () => {
   useEffect(() => {
     const Jobs = async (companyId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/company/${companyId}/jobs`,
+            const response = await axios.get(`${baseUrl}/company/${companyId}/jobs`,
               { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
             );
             setJobs(response.data.jobs);
-            const applicationsResponse = await axios.get(`http://localhost:5000/applications/${companyId}/applications`, {
+            const applicationsResponse = await axios.get(`${baseUrl}/applications/${companyId}/applications`, {
               headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
             });
             setApplications({ totalApplications: applicationsResponse.data.applications });
@@ -41,7 +44,7 @@ const Dashboard = () => {
 
 
   const handleSubmit = async (JobDetails) => {
-     await axios.post('http://localhost:5000/company/post-a-job', JobDetails, {
+     await axios.post(`${baseUrl}/company/post-a-job`, JobDetails, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`
       }

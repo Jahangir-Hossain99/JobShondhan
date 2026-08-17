@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/"; // Fallback to local if env variable is not set
+const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
 
 
 
@@ -15,7 +16,7 @@ const CompanyLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const response = await axios.post(`${API_BASE_URL}company/login`, { email, password,role:"company" });
+      const response = await axios.post(`${baseUrl}/company/login`, { email, password });
       const token = response.data.token
       const company = response.data.company;
 
