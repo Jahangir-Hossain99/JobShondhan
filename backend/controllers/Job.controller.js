@@ -129,7 +129,6 @@ const getAppliedJobsByUser = async (req, res) => {
             job: app.jobId,
             applicationStatus: app.status
         }));
-        console.log('User Applied Jobs with Status:', userAppliedJobsWithStatus);
         return res.status(200).json({ userAppliedJobsWithStatus });
     }
     catch (error) {

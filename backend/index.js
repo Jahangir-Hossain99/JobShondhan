@@ -16,6 +16,7 @@ const { connectDB, disconnectDB } = require('./config/db');
 app.use(cors({
   origin: ['https://job-shondhan.vercel.app','http://localhost:5173'],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json()); 
