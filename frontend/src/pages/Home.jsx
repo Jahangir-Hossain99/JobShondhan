@@ -51,7 +51,7 @@ const Home = () => {
         {jobs?.map(job => (
           <div key={job._id} className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl transition-shadow duration-300">
             <h3 className="text-xl font-semibold text-gray-800">{job.position}</h3>
-            <p className="text-blue-600 font-medium my-2">{job.companyName}</p>
+            <p className="text-blue-600 font-semibold my-2">{job.companyName}</p>
             
             <div className="text-gray-600 space-y-2 mb-4">
               <div className="flex items-center">
@@ -74,7 +74,7 @@ const Home = () => {
             
             {/* 3. Modified Button with onClick handler */}
             <button 
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200"
+              className="w-full bg-slate-500 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200"
               // Pass the current job's unique ID to the handler
               onClick={() => handleViewDetails(job._id)}
             >

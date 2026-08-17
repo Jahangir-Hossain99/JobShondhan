@@ -25,7 +25,7 @@ const JobDetails = () => {
     jobId: jobData._id,
     jobPosition: jobData.position,
     companyId: jobData.companyId,
-    applicantId: userData._id,
+    applicantId: userData?._id || null,
   } : null;
 
 
@@ -50,14 +50,14 @@ const JobDetails = () => {
               <p className="text-xl text-cyan-700 font-semibold mb-3">{jobData.companyName}</p>
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-gray-600 text-sm md:text-base">
                 <span className="flex items-center">
-                  <svg className="w-5 h-5 mr-1 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" /></svg>
-                  {jobData.location}
+                <span className="mr-2">&#x1F4CD;</span>
+                <span>{jobData.location}</span>
                 </span>
                 <span className="flex items-center">
-                  <svg className="w-5 h-5 mr-1 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path d="M8.433 7.417c1.192-.74 2.408-.74 3.6 0l1.733 1.083c1.242.775 2.167 2.2 2.167 3.65v.983c0 1.45-.925 2.875-2.167 3.65l-1.733 1.083c-1.192.74-2.408.74-3.6 0l-1.733-1.083C4.925 15.917 4 14.492 4 13.042v-.983c0-1.45.925-2.875 2.167-3.65L8.433 7.417zM10 14a4 4 0 100-8 4 4 0 000 8z" /></svg>
-                  {jobData.salary}
+                <span className="mr-2">&#x1F4B5;</span>
+                <span className='font-bold' > BDT {jobData.salary? `${jobData.salary}` : "Negotiable"}</span>
                 </span>
-                <span className="text-sm text-gray-400 self-center">
+                <span className="text-sm text-gray-400 self-center font-semibold">
                   Posted: {new Date(jobData.updatedAt).toLocaleDateString('en-US',{day: '2-digit', month: 'short', year: 'numeric'}) }
                 </span>
               </div>
