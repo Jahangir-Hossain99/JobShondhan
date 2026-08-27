@@ -13,7 +13,7 @@
 
     const handleSubmit = async (completeData) => {
       try {
-        await axios.post(`${API_BASE_URL}users/register`, completeData);
+        await axios.post(`${API_BASE_URL}/register`, completeData);
         console.log("API Success! Attempting toast...");
         toast.success("Registration successful! Please login.",{ duration: 2000 });
         setTimeout(() => {
