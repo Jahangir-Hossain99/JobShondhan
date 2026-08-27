@@ -2,6 +2,7 @@
   import UserRegsiter from "../components/Register/UserRegister";
   import axios from "axios";
   import toast from "react-hot-toast";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/"; // Fallback to local if env variable is not set
 
   const Register = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@
 
     const handleSubmit = async (completeData) => {
       try {
-        await axios.post('http://localhost:5000/users/register', completeData);
+        await axios.post(`${API_BASE_URL}users/register`, completeData);
         console.log("API Success! Attempting toast...");
         toast.success("Registration successful! Please login.",{ duration: 2000 });
         setTimeout(() => {
